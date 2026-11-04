@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فريق إدارة ومتابعة المواقع | Task & Site Monitor</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+*,::before,::after{box-sizing:border-box;border:0 solid #e2e8f0}
+html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4}
+body{margin:0;line-height:inherit;font-family:'Cairo',sans-serif}
+h1,h2,h3,h4,p{margin:0;font-size:inherit;font-weight:inherit}
+b{font-weight:bolder}
+table{border-collapse:collapse;border-color:inherit;text-indent:0}
+th{font-weight:inherit;text-align:inherit}
+button,input,select,textarea{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;color:inherit;margin:0;padding:0;background:transparent}
+button,select{text-transform:none}
+button,[type=button],[type=submit]{-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+button:disabled{cursor:default;opacity:.7}
+textarea{resize:vertical}
+input::placeholder,textarea::placeholder{opacity:1;color:#94a3b8}
+:root{color-scheme:light}
+.dark{color-scheme:dark}
+
+/* layout */
+.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}
+.hidden{display:none}
+.fixed{position:fixed}.sticky{position:sticky}
+.inset-0{inset:0}.top-0{top:0}.bottom-5{bottom:1.25rem}.left-5{left:1.25rem}
+.z-40{z-index:40}.z-50{z-index:50}
+.flex-1{flex:1 1 0%}.flex-col{flex-direction:column}
+.items-center{align-items:center}.items-start{align-items:flex-start}
+.justify-between{justify-content:space-between}.justify-center{justify-content:center}.justify-end{justify-content:flex-end}
+.gap-1{gap:.25rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.col-span-2{grid-column:span 2/span 2}.col-span-full{grid-column:1/-1}
+.space-y-2>:not(:first-child){margin-top:.5rem}.space-y-3>:not(:first-child){margin-top:.75rem}
+.space-y-4>:not(:first-child){margin-top:1rem}.space-y-6>:not(:first-child){margin-top:1.5rem}
+.divide-y>:not(:first-child){border-top-width:1px}
+.divide-slate-100>:not(:first-child){border-color:#f1f5f9}
+.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}
+
+/* sizing */
+.w-12{width:3rem}.h-12{height:3rem}.w-16{width:4rem}.h-16{height:4rem}.w-64{width:16rem}.w-full{width:100%}
+.min-h-screen{min-height:100vh}.max-w-md{max-width:28rem}.max-w-7xl{max-width:80rem}.mx-auto{margin-left:auto;margin-right:auto}
+
+/* spacing */
+.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}
+.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}
+.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}
+.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-3\.5{padding-top:.875rem;padding-bottom:.875rem}.py-8{padding-top:2rem;padding-bottom:2rem}
+.pt-2{padding-top:.5rem}
+.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-4{margin-top:1rem}
+.mb-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mb-6{margin-bottom:1.5rem}
+
+/* typography */
+.text-\[10px\]{font-size:10px}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}
+.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}
+.font-semibold{font-weight:600}.font-bold{font-weight:700}.font-black{font-weight:900}
+.text-center{text-align:center}.text-right{text-align:right}
+.leading-relaxed{line-height:1.625}.tracking-tight{letter-spacing:-.025em}
+
+/* colors */
+.text-white{color:#fff}.text-slate-300{color:#cbd5e1}.text-slate-400{color:#94a3b8}.text-slate-500{color:#64748b}.text-slate-900{color:#0f172a}
+.text-indigo-400{color:#818cf8}.text-indigo-500{color:#6366f1}.text-indigo-600{color:#4f46e5}
+.text-amber-500{color:#f59e0b}.text-amber-600{color:#d97706}.text-emerald-400{color:#34d399}.text-emerald-500{color:#10b981}
+.text-rose-500{color:#f43f5e}.text-red-600{color:#dc2626}.text-orange-500{color:#f97316}
+.bg-white{background-color:#fff}.bg-white\/80{background-color:rgb(255 255 255/.8)}.bg-black\/60{background-color:rgb(0 0 0/.6)}
+.bg-slate-50{background-color:#f8fafc}.bg-slate-100{background-color:#f1f5f9}.bg-slate-800{background-color:#1e293b}.bg-slate-900{background-color:#0f172a}
+.bg-indigo-600{background-color:#4f46e5}.bg-indigo-500\/20{background-color:rgb(99 102 241/.2)}
+.bg-amber-500\/10{background-color:rgb(245 158 11/.1)}.bg-amber-500\/20{background-color:rgb(245 158 11/.2)}
+.bg-emerald-600{background-color:#059669}.bg-emerald-500\/20{background-color:rgb(16 185 129/.2)}
+.bg-rose-600{background-color:#e11d48}.bg-red-500\/10{background-color:rgb(239 68 68/.1)}
+
+/* borders & radius */
+.border{border-width:1px}.border-0{border-width:0}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}
+.border-slate-100{border-color:#f1f5f9}.border-slate-200{border-color:#e2e8f0}.border-slate-800{border-color:#1e293b}
+.border-indigo-500{border-color:#6366f1}.border-amber-500\/30{border-color:rgb(245 158 11/.3)}.border-t-transparent{border-top-color:transparent}
+.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}
+
+/* effects */
+.shadow-sm{box-shadow:0 1px 2px 0 rgb(0 0 0/.05)}
+.shadow-lg{box-shadow:0 10px 15px -3px rgb(0 0 0/.1),0 4px 6px -4px rgb(0 0 0/.1)}
+.shadow-xl{box-shadow:0 20px 25px -5px rgb(0 0 0/.1),0 8px 10px -6px rgb(0 0 0/.1)}
+.shadow-2xl{box-shadow:0 25px 50px -12px rgb(0 0 0/.25)}
+.shadow-indigo-500\/30{box-shadow:0 10px 15px -3px rgb(99 102 241/.3),0 4px 6px -4px rgb(99 102 241/.3)}
+.backdrop-blur{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.backdrop-blur-sm{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.outline-none{outline:2px solid transparent;outline-offset:2px}
+.opacity-0{opacity:0}
+.translate-y-24{transform:translateY(6rem)}
+.transition{transition-property:color,background-color,border-color,opacity,box-shadow,transform;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:150ms}
+.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:150ms}
+.transition-colors{transition-property:color,background-color,border-color;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:150ms}
+.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}
+@keyframes spin{to{transform:rotate(360deg)}}
+.animate-spin{animation:spin 1s linear infinite}
+
+/* states */
+.hover\:bg-indigo-700:hover{background-color:#4338ca}
+.hover\:bg-rose-700:hover{background-color:#be123c}
+.hover\:bg-red-500:hover{background-color:#ef4444}
+.hover\:text-white:hover{color:#fff}
+.hover\:underline:hover{text-decoration:underline}
+.focus\:ring-2:focus{box-shadow:0 0 0 2px #6366f1}
+
+/* dark mode */
+.dark .dark\:bg-slate-800{background-color:#1e293b}
+.dark .dark\:bg-slate-900{background-color:#0f172a}
+.dark .dark\:bg-slate-900\/80{background-color:rgb(15 23 42/.8)}
+.dark .dark\:bg-slate-950{background-color:#020617}
+.dark .dark\:border-slate-800{border-color:#1e293b}
+.dark .dark\:border-slate-800\/60{border-color:rgb(30 41 59/.6)}
+.dark .dark\:divide-slate-800\/60>:not(:first-child){border-color:rgb(30 41 59/.6)}
+.dark .dark\:text-amber-400{color:#fbbf24}
+.dark .dark\:text-slate-100{color:#f1f5f9}
+.dark .dark\:text-slate-400{color:#94a3b8}
+
+/* responsive */
+@media (min-width:640px){
+  .sm\:gap-3{gap:.75rem}.sm\:gap-4{gap:1rem}.sm\:p-6{padding:1.5rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}
+}
+@media (min-width:768px){
+  .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.md\:grid-cols-5{grid-template-columns:repeat(5,minmax(0,1fr))}.md\:col-span-1{grid-column:span 1/span 1}
+}
+@media (min-width:1024px){
+  .lg\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.hidden{display:none}
+  </style>
+
+  <!-- Firebase SDK v10 Compat -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    @media print {
+      body * { visibility: hidden; }
+      #printable-report, #printable-report * { visibility: visible; }
+      #printable-report { position: absolute; left: 0; top: 0; width: 100%; color: black !important; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- شاشة التحميل (تختفي تلقائياً) -->
+  <div id="loading-screen" class="fixed inset-0 z-50 bg-slate-900 flex flex-col items-center justify-center gap-4 text-white">
+    <div class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+    <p class="text-base font-semibold">بيحمّل سيستم التيم... ثواني يا بطل</p>
+  </div>
+
+  <!-- نافذة التنبيهات -->
+  <div id="toast" class="fixed bottom-5 left-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 px-5 py-3 rounded-xl shadow-2xl text-sm font-semibold flex items-center gap-2"></div>
+
+  <!-- شاشات الدخول والتسجيل -->
+  <div id="auth-container" class="hidden min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border border-slate-200 dark:border-slate-800">
+      
+      <div class="text-center mb-6">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-600 text-white mb-3 text-2xl font-bold shadow-lg shadow-indigo-500/30">
+          ⚡
+        </div>
+        <h1 class="text-2xl font-black">سيستم شغل التيم</h1>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1" id="auth-subtitle">سجل دخولك باليوزر نيم والباسورد</p>
+      </div>
+
+      <!-- فورم أول أدمن -->
+      <form id="first-admin-form" class="space-y-4">
+        <div class="bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 p-3 rounded-xl text-xs leading-relaxed">
+          👋 أهلاً بيك! دي أول مرة تشغل السيستم، هتعمل دلوقتي حساب <b>الأدمن الأساسي</b>، وبعد كدة التسجيل المفتوح هيتقفل تماماً.
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">اسمك بالكامل</label>
+          <input type="text" id="admin-name" required placeholder="مثال: أحمد مصطفى" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">المسمى الوظيفي</label>
+          <input type="text" id="admin-title" required placeholder="مثال: Lead Web Designer & Admin" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">اسم المستخدم (Username للدخول)</label>
+          <input type="text" id="admin-username" required placeholder="admin" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">كلمة المرور</label>
+          <input type="password" id="admin-pass" minlength="6" required placeholder="••••••••" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg transition">تأكيد وتشغيل السيستم 🚀</button>
+        <div class="text-center pt-2">
+          <button type="button" onclick="toggleAuthForms(true)" class="text-xs text-indigo-500 font-bold hover:underline">عندك حساب بالفعل؟ سجل دخول من هنا</button>
+        </div>
+      </form>
+
+      <!-- فورم الدخول العادي -->
+      <form id="login-form" class="hidden space-y-4">
+        <div>
+          <label class="block text-xs font-bold mb-1">اسم المستخدم (Username)</label>
+          <input type="text" id="login-username" required placeholder="اكتب اسم المستخدم" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1">كلمة المرور</label>
+          <input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-slate-100 dark:bg-slate-800 border-0 rounded-xl p-3 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+        <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-lg transition">تسجيل الدخول</button>
+        <div class="text-center pt-2">
+          <button type="button" onclick="toggleAuthForms(false)" class="text-xs text-slate-500 hover:underline">أول مرة تشغل السيستم؟ اضغط هنا لإنشاء الأدمن</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- التطبيق الرئيسي -->
+  <div id="main-app" class="hidden flex-1 flex flex-col">
+    
+    <header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="p-2 rounded-xl bg-indigo-600 text-white font-black text-xl">⚡</span>
+          <div>
+            <h1 class="text-base font-black tracking-tight flex items-center gap-2">
+              تيم ديزاين & متابعة المواقع
+              <span id="user-role-badge" class="text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+            </h1>
+            <p class="text-xs text-slate-500 dark:text-slate-400" id="user-welcome">يا هلا يا هندسة</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="theme-toggle" class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-300">
+            <span id="theme-icon">🌙</span>
+          </button>
+          <button id="logout-btn" class="p-2.5 rounded-xl bg-red-500/10 hover:bg-red-500 text-red-600 hover:text-white transition text-xs font-bold flex items-center gap-1">
+            <span>🚪</span> <span>خروج</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 flex gap-2 border-t border-slate-100 dark:border-slate-800/60 overflow-x-auto py-1">
+        <button onclick="switchTab('dashboard')" id="tab-btn-dashboard" class="nav-tab px-4 py-2 text-xs font-bold rounded-lg transition whitespace-nowrap">📊 لوحة المتابعة</button>
+        <button onclick="switchTab('tasks')" id="tab-btn-tasks" class="nav-tab px-4 py-2 text-xs font-bold rounded-lg transition whitespace-nowrap">📋 التاسكات</button>
+        <button onclick="switchTab('issues')" id="tab-btn-issues" class="nav-tab px-4 py-2 text-xs font-bold rounded-lg transition whitespace-nowrap">🛠️ سجل الأعطال</button>
+        <button onclick="switchTab('reports')" id="tab-btn-reports" class="nav-tab px-4 py-2 text-xs font-bold rounded-lg transition whitespace-nowrap">📈 التقرير الشهري</button>
+        <button onclick="switchTab('team')" id="tab-btn-team" class="nav-tab px-4 py-2 text-xs font-bold rounded-lg transition whitespace-nowrap admin-only">👥 إدارة التيم</button>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto w-full p-4 sm:p-6 flex-1">
+      <!-- 1. DASHBOARD -->
+      <section id="view-dashboard" class="view-content space-y-6">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
+          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-semibold text-slate-500">تاسكات مفتوحة ⏳</span>
+            <p id="kpi-open-tasks" class="text-2xl font-black mt-2 text-indigo-600">0</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-semibold text-rose-500">متأخرة عن وقتها ⚠️</span>
+            <p id="kpi-overdue-tasks" class="text-2xl font-black mt-2 text-rose-500">0</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-semibold text-amber-500">تسليمها خلال يومين ⚡</span>
+            <p id="kpi-soon-tasks" class="text-2xl font-black mt-2 text-amber-500">0</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <span class="text-xs font-semibold text-emerald-500">خلصت الشهر ده ✅</span>
+            <p id="kpi-done-month" class="text-2xl font-black mt-2 text-emerald-500">0</p>
+          </div>
+          <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm col-span-2 md:col-span-1">
+            <span class="text-xs font-semibold text-orange-500">مشاكل مفتوحة 🚨</span>
+            <p id="kpi-open-issues" class="text-2xl font-black mt-2 text-orange-500">0</p>
+          </div>
+        </div>
+
+        <div class="admin-only bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+          <h2 class="text-sm font-black mb-3">🎯 أداء الزملاء هذا الشهر</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead class="text-slate-400 border-b border-slate-200 dark:border-slate-800">
+                <tr>
+                  <th class="py-2">الموظف</th><th class="py-2">تاسكات جارية</th><th class="py-2">متأخرة</th><th class="py-2">منجزة</th><th class="py-2">الالتزام %</th>
+                </tr>
+              </thead>
+              <tbody id="employee-kpi-table" class="divide-y divide-slate-100 dark:divide-slate-800/60 font-semibold"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. TASKS -->
+      <section id="view-tasks" class="view-content hidden space-y-4">
+        <div class="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <input type="text" id="task-search" oninput="renderTasks()" placeholder="ابحث باسم التاسك أو الموقع..." class="text-xs bg-slate-100 dark:bg-slate-800 rounded-xl px-3 py-2 outline-none w-64">
+          <button onclick="openTaskModal()" class="admin-only px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold">➕ تاسك جديدة</button>
+        </div>
+        <div id="tasks-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- 3. ISSUES LOG -->
+      <section id="view-issues" class="view-content hidden space-y-4">
+        <div class="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <h2 class="text-sm font-black">🛠️ سجل مشاكل وأعطال المواقع</h2>
+          <button onclick="openIssueModal()" class="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-bold">➕ تسجيل عطل</button>
+        </div>
+        <div id="issues-list" class="space-y-3"></div>
+      </section>
+
+      <!-- 4. MONTHLY REPORT -->
+      <section id="view-reports" class="view-content hidden space-y-6">
+        <div class="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <input type="month" id="report-month" onchange="generateReport()" class="text-xs bg-slate-100 dark:bg-slate-800 rounded-xl px-3 py-2 outline-none font-bold">
+          <div class="flex gap-2">
+            <button onclick="copyReportAsText()" class="px-3 py-2 bg-emerald-600 text-white text-xs font-bold rounded-xl">📋 نسخ لواتساب</button>
+            <button onclick="window.print()" class="px-3 py-2 bg-indigo-600 text-white text-xs font-bold rounded-xl">🖨️ طباعة PDF</button>
+          </div>
+        </div>
+        <div id="printable-report" class="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-4">
+          <h2 class="text-lg font-black text-indigo-500">تقرير متابعة وإنجازات المواقع</h2>
+          <div id="report-content" class="text-xs space-y-2 text-slate-300"></div>
+        </div>
+      </section>
+
+      <!-- 5. TEAM -->
+      <section id="view-team" class="view-content hidden admin-only space-y-6">
+        <div class="flex justify-between items-center bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
+          <h2 class="text-sm font-black">👥 إدارة أعضاء التيم</h2>
+          <button onclick="openAddMemberModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold">➕ إضافة زميل</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="team-members-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal Task -->
+  <div id="task-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 w-full max-w-md border border-slate-200 dark:border-slate-800">
+      <h3 class="font-black text-sm mb-3">إضافة / تعديل تاسك</h3>
+      <form id="task-form" class="space-y-3 text-xs">
+        <input type="text" id="task-title" required placeholder="عنوان التاسك" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <input type="text" id="task-website" required placeholder="الموقع (مثال: domain.com)" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <select id="task-type" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+          <option value="Design">تصميم UI/UX</option>
+          <option value="Development">تطوير وبرمجة</option>
+          <option value="Content">تحديث محتوى</option>
+          <option value="SEO">سيو SEO</option>
+          <option value="Performance">سرعة وأداء</option>
+          <option value="BugFix">إصلاح عطل</option>
+        </select>
+        <select id="task-assignee" required class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none"></select>
+        <input type="date" id="task-deadline" required class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('task-modal')" class="px-4 py-2 bg-slate-800 rounded-xl">إلغاء</button>
+          <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold">حفظ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Issue -->
+  <div id="issue-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 w-full max-w-md border border-slate-200 dark:border-slate-800">
+      <h3 class="font-black text-sm mb-3">تسجيل مشكلة أو عطل</h3>
+      <form id="issue-form" class="space-y-3 text-xs">
+        <input type="text" id="issue-title" required placeholder="عنوان المشكلة" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <input type="text" id="issue-website" required placeholder="اسم الموقع" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <textarea id="issue-details" required placeholder="التفاصيل..." class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none"></textarea>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('issue-modal')" class="px-4 py-2 bg-slate-800 rounded-xl">إلغاء</button>
+          <button type="submit" class="px-4 py-2 bg-rose-600 text-white rounded-xl font-bold">حفظ العطل</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Add Member -->
+  <div id="member-modal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 w-full max-w-md border border-slate-200 dark:border-slate-800">
+      <h3 class="font-black text-sm mb-3">إضافة زميل جديد</h3>
+      <form id="member-form" class="space-y-3 text-xs">
+        <input type="text" id="member-name" required placeholder="الاسم بالكامل" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <input type="text" id="member-title" required placeholder="المسمى الوظيفي" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <input type="text" id="member-username" required placeholder="اسم المستخدم (Username)" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <input type="password" id="member-password" required minlength="6" placeholder="كلمة المرور" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+        <select id="member-role" class="w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-2.5 outline-none">
+          <option value="member">عضو تيم</option>
+          <option value="admin">مدير (Admin)</option>
+        </select>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" onclick="closeModal('member-modal')" class="px-4 py-2 bg-slate-800 rounded-xl">إلغاء</button>
+          <button type="submit" id="btn-save-member" class="px-4 py-2 bg-indigo-600 text-white rounded-xl font-bold">حفظ</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDEj3R1f6UeGD-_w3ttc87Dp8bxyAYXfSY",
+      authDomain: "my-team-system.firebaseapp.com",
+      projectId: "my-team-system",
+      storageBucket: "my-team-system.firebasestorage.app",
+      messagingSenderId: "637754195578",
+      appId: "1:637754195578:web:f2776cb8d2814c6ec505c3",
+      measurementId: "G-C90JPT02DG"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const INTERNAL_DOMAIN = "@team.local";
+
+    let currentUser = null;
+    let currentUserDoc = null;
+    let allUsers = [];
+    let allTasks = [];
+    let allIssues = [];
+
+    // التبديل بين فورم الأول وأدمن والدخول
+    function toggleAuthForms(showLogin) {
+      if (showLogin) {
+        document.getElementById('first-admin-form').classList.add('hidden');
+        document.getElementById('login-form').classList.remove('hidden');
+      } else {
+        document.getElementById('first-admin-form').classList.remove('hidden');
+        document.getElementById('login-form').classList.add('hidden');
+      }
+    }
+
+    function showToast(msg, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.className = `fixed bottom-5 left-5 z-50 transition-all duration-300 px-5 py-3 rounded-2xl shadow-2xl text-xs font-bold ${type === 'success' ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white'}`;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 3500);
+    }
+
+    // إخفاء شاشة التحميل إجبارياً بعد ثانية واحدة لضمان عدم التعليق
+    setTimeout(() => {
+      const loader = document.getElementById('loading-screen');
+      if (loader) loader.classList.add('hidden');
+      if (!currentUser) {
+        document.getElementById('auth-container').classList.remove('hidden');
+      }
+    }, 1000);
+
+    // مراقبة الدخول
+    auth.onAuthStateChanged(async (user) => {
+      document.getElementById('loading-screen').classList.add('hidden');
+      if (user) {
+        try {
+          const doc = await db.collection('users').doc(user.uid).get();
+          if (doc.exists && doc.data().isActive !== false) {
+            currentUser = user;
+            currentUserDoc = doc.data();
+            document.getElementById('auth-container').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            setupUIForRole();
+            initDataListeners();
+          } else {
+            await auth.signOut();
+            showToast('الحساب معطل، راجع الأدمن!', 'error');
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      } else {
+        currentUser = null;
+        currentUserDoc = null;
+        document.getElementById('main-app').classList.add('hidden');
+        document.getElementById('auth-container').classList.remove('hidden');
+      }
+    });
+
+    // تسجيل أول أدمن
+    document.getElementById('first-admin-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('admin-name').value.trim();
+      const title = document.getElementById('admin-title').value.trim();
+      const username = document.getElementById('admin-username').value.trim().toLowerCase();
+      const pass = document.getElementById('admin-pass').value;
+      const email = username + INTERNAL_DOMAIN;
+
+      try {
+        const cred = await auth.createUserWithEmailAndPassword(email, pass);
+        await db.collection('users').doc(cred.user.uid).set({
+          uid: cred.user.uid, name, title, username, email, role: 'admin', isActive: true,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showToast('تم إنشاء حساب الأدمن وتشغيل السيستم بنجاح! 🚀');
+      } catch (err) {
+        showToast('خطأ: ' + err.message, 'error');
+      }
+    });
+
+    // تسجيل الدخول العادي
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value.trim().toLowerCase();
+      const pass = document.getElementById('login-pass').value;
+      const email = username.includes('@') ? username : username + INTERNAL_DOMAIN;
+
+      try {
+        await auth.signInWithEmailAndPassword(email, pass);
+        showToast('يا هلا بيك يا هندسة! 👋');
+      } catch (err) {
+        showToast('بيانات الدخول غير صحيحة، راجع اليوزر والباسورد!', 'error');
+      }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', () => auth.signOut());
+
+    function setupUIForRole() {
+      const role = currentUserDoc.role;
+      document.getElementById('user-welcome').textContent = `${currentUserDoc.name} (${currentUserDoc.title})`;
+      const badge = document.getElementById('user-role-badge');
+      if (role === 'admin') {
+        badge.textContent = 'أدمن النظام 👑';
+        badge.className = 'text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-500/20 text-amber-500';
+        document.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+      } else {
+        badge.textContent = 'عضو التيم 💻';
+        badge.className = 'text-[10px] px-2 py-0.5 rounded-full font-bold bg-indigo-500/20 text-indigo-400';
+        document.querySelectorAll('.admin-only').forEach(el => el.classList.add('hidden'));
+      }
+      switchTab('dashboard');
+    }
+
+    function initDataListeners() {
+      db.collection('users').onSnapshot(snap => {
+        allUsers = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        populateDropdowns();
+        renderTeam();
+        renderDashboard();
+      });
+
+      let tasksQ = db.collection('tasks');
+      if (currentUserDoc.role !== 'admin') {
+        tasksQ = tasksQ.where('assigneeId', '==', currentUser.uid);
+      }
+      tasksQ.onSnapshot(snap => {
+        allTasks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderTasks();
+        renderDashboard();
+      });
+
+      db.collection('issues').onSnapshot(snap => {
+        allIssues = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderIssues();
+        renderDashboard();
+      });
+    }
+
+    function populateDropdowns() {
+      const sel = document.getElementById('task-assignee');
+      sel.innerHTML = '';
+      allUsers.filter(u => u.isActive).forEach(u => {
+        sel.innerHTML += `<option value="${u.uid}">${u.name}</option>`;
+      });
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll('.view-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('bg-indigo-600', 'text-white'));
+      const v = document.getElementById(`view-${name}`);
+      const b = document.getElementById(`tab-btn-${name}`);
+      if (v) v.classList.remove('hidden');
+      if (b) b.classList.add('bg-indigo-600', 'text-white');
+    }
+
+    // Tasks CRUD
+    function renderTasks() {
+      const container = document.getElementById('tasks-container');
+      if (allTasks.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-8 text-slate-400">مفيش تاسكات حالياً..</div>`;
+        return;
+      }
+      container.innerHTML = allTasks.map(t => `
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-2">
+              <span class="text-xs text-indigo-400 font-bold">${t.workType}</span>
+              <span class="text-[10px] px-2 py-0.5 rounded-full font-bold ${t.status === 'done' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-500'}">
+                ${t.status === 'done' ? 'خالصة ✅' : 'شغالين عليها ⏳'}
+              </span>
+            </div>
+            <h3 class="font-black text-sm">${t.title}</h3>
+            <p class="text-xs text-slate-400 mt-1">🌐 الموقع: ${t.website}</p>
+            <p class="text-xs text-slate-400">المسؤول: <b>${t.assigneeName}</b> | التسليم: ${t.deadline}</p>
+          </div>
+          <div class="mt-4 pt-2 border-t border-slate-800 flex justify-between items-center">
+            ${t.status !== 'done' ? `<button onclick="markDone('${t.id}')" class="px-3 py-1 bg-emerald-600 text-white rounded-lg text-xs font-bold">تسليم تم ✅</button>` : `<span class="text-xs text-emerald-500">تم التسليم 🎯</span>`}
+            ${currentUserDoc.role === 'admin' ? `<button onclick="deleteTask('${t.id}')" class="text-rose-500 text-xs">🗑️</button>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openTaskModal() { document.getElementById('task-modal').classList.remove('hidden'); }
+    document.getElementById('task-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const assigneeId = document.getElementById('task-assignee').value;
+      const u = allUsers.find(x => x.uid === assigneeId);
+      await db.collection('tasks').add({
+        title: document.getElementById('task-title').value.trim(),
+        website: document.getElementById('task-website').value.trim(),
+        workType: document.getElementById('task-type').value,
+        assigneeId,
+        assigneeName: u ? u.name : '',
+        deadline: document.getElementById('task-deadline').value,
+        status: 'not_started',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      closeModal('task-modal');
+      showToast('تمت إضافة التاسك!');
+    });
+
+    async function markDone(id) {
+      await db.collection('tasks').doc(id).update({ status: 'done', doneAt: new Date().toISOString().split('T')[0] });
+      showToast('عاش يا بطل! تم التسليم.');
+    }
+    async function deleteTask(id) {
+      if (confirm('حذف التاسك؟')) await db.collection('tasks').doc(id).delete();
+    }
+
+    // Issues CRUD
+    function renderIssues() {
+      const container = document.getElementById('issues-list');
+      if (allIssues.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400">كل المواقع مستقرة ولا يوجد أعطال.</p>`;
+        return;
+      }
+      container.innerHTML = allIssues.map(i => `
+        <div class="bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-800 flex justify-between items-center text-xs">
+          <div><b>${i.title}</b> (${i.website}) - <span class="text-slate-400">${i.details}</span></div>
+          ${currentUserDoc.role === 'admin' ? `<button onclick="deleteIssue('${i.id}')" class="text-rose-500">🗑️</button>` : ''}
+        </div>
+      `).join('');
+    }
+    function openIssueModal() { document.getElementById('issue-modal').classList.remove('hidden'); }
+    document.getElementById('issue-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await db.collection('issues').add({
+        title: document.getElementById('issue-title').value.trim(),
+        website: document.getElementById('issue-website').value.trim(),
+        details: document.getElementById('issue-details').value.trim(),
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+      closeModal('issue-modal');
+      showToast('تم قيد العطل!');
+    });
+    async function deleteIssue(id) {
+      if (confirm('حذف المشكلة؟')) await db.collection('issues').doc(id).delete();
+    }
+
+    // Dashboard
+    function renderDashboard() {
+      document.getElementById('kpi-open-tasks').textContent = allTasks.filter(t => t.status !== 'done').length;
+      document.getElementById('kpi-open-issues').textContent = allIssues.length;
+      if (currentUserDoc && currentUserDoc.role === 'admin') {
+        const tb = document.getElementById('employee-kpi-table');
+        tb.innerHTML = allUsers.map(u => `
+          <tr>
+            <td class="py-2">${u.name}</td>
+            <td class="py-2 text-indigo-400 font-bold">${allTasks.filter(t => t.assigneeId === u.uid && t.status !== 'done').length}</td>
+            <td class="py-2 text-rose-500">0</td>
+            <td class="py-2 text-emerald-400 font-bold">${allTasks.filter(t => t.assigneeId === u.uid && t.status === 'done').length}</td>
+            <td class="py-2">100%</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    // Team Management (Secondary App)
+    function renderTeam() {
+      const container = document.getElementById('team-members-list');
+      if (!container) return;
+      container.innerHTML = allUsers.map(u => `
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-800 text-xs">
+          <h4 class="font-black text-sm">${u.name}</h4>
+          <p class="text-slate-400 mt-1">${u.title} (${u.role === 'admin' ? 'مدير' : 'عضو'})</p>
+          <p class="text-slate-400">اليوزر للدخول: <b>${u.username}</b></p>
+        </div>
+      `).join('');
+    }
+
+    function openAddMemberModal() { document.getElementById('member-modal').classList.remove('hidden'); }
+    document.getElementById('member-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-save-member');
+      btn.disabled = true; btn.textContent = 'جاري الإضافة...';
+      const name = document.getElementById('member-name').value.trim();
+      const title = document.getElementById('member-title').value.trim();
+      const username = document.getElementById('member-username').value.trim().toLowerCase();
+      const password = document.getElementById('member-password').value;
+      const role = document.getElementById('member-role').value;
+      const email = username + INTERNAL_DOMAIN;
+
+      let secApp = null;
+      try {
+        secApp = firebase.initializeApp(firebaseConfig, "SecApp_" + Date.now());
+        const cred = await secApp.auth().createUserWithEmailAndPassword(email, password);
+        await secApp.auth().signOut();
+        await db.collection('users').doc(cred.user.uid).set({
+          uid: cred.user.uid, name, title, username, email, role, isActive: true,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        showToast(`تمت إضافة الزميل ${name}! 🎉`);
+        closeModal('member-modal');
+      } catch (err) {
+        showToast('خطأ: ' + err.message, 'error');
+      } finally {
+        if (secApp) await secApp.delete();
+        btn.disabled = false; btn.textContent = 'حفظ';
+      }
+    });
+
+    function copyReportAsText() {
+      let t = `📊 تقرير متابعة المواقع\nتاسكات منجزة: ${allTasks.filter(x => x.status === 'done').length}\nأعطال: ${allIssues.length}`;
+      navigator.clipboard.writeText(t);
+      showToast('تم نسخ التقرير!');
+    }
+
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+  </script>
+</body>
+</html>
